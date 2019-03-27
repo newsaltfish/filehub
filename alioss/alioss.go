@@ -90,6 +90,7 @@ func (a *AliOss) PutExpire(path string, data []byte, contType string, dur time.D
 	if err != nil {
 		return err
 	}
+
 	return a.buc.PutObjectWithURL(signUrl, bytes.NewReader(data))
 }
 

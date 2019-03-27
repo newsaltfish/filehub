@@ -60,14 +60,15 @@ func (f File) Put(path string, data []byte, contType string) (err error) {
 	return ioutil.WriteFile(rp, data, os.ModePerm)
 }
 
-func (f File) PutExpire(path string, data []byte, contType string, dur time.Duration) (err error) {
+func (f File) PutExpire(path string, data []byte, contType string, dur time.Duration) (sign string, err error) {
 	// TODO 设置过期
 	rp := f.RelPath(path)
 	err = os.MkdirAll(filepath.Dir(rp), os.ModePerm)
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(rp, data, os.ModePerm)
+	err = ioutil.WriteFile(rp, data, os.ModePerm)
+	return
 }
 
 func (f File) Get(path string) (data []byte, contType string, err error) {
